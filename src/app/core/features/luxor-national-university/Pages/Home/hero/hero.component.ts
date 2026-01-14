@@ -127,7 +127,7 @@ import { HomeService } from '../../../Services/home.service';
         text-align: center;
       }
        .hero-content button {
-      margin-bottom:10rem;
+      margin-bottom:7rem;
     }
       .hero-images {
         height: 300px;
