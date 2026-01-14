@@ -108,7 +108,7 @@ import { NavigationItem, LanguageOption } from '../../../model/navigation.model'
     /* Mobile Responsive Styles */
     @media (max-width: 768px) {
       .logo {
-        width: 200px;
+        width: 250px;
         height: 40px;
       }
 
