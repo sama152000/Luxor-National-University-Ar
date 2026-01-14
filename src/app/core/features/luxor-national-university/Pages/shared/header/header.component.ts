@@ -76,7 +76,7 @@ import { NavigationItem, LanguageOption } from '../../../model/navigation.model'
   `,
   styles: [`
     .logo {
-      width: 250px;
+      width: 300px;
       height: 50px;
       object-fit: contain;
       background-color: white;
