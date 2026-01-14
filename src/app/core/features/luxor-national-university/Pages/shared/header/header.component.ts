@@ -19,7 +19,7 @@ import { NavigationItem, LanguageOption } from '../../../model/navigation.model'
               [src]="universityInfo.logo"
               [alt]="getLocalizedText(universityInfo.name, universityInfo.nameAr)"
               class="logo"
-              width="270"
+              width="250"
               height="50"
             >
             <!-- <h5 class="text-white mb-0 ms-3 d-none d-md-block">

@@ -318,6 +318,10 @@ import { NewsSection, NewsArticle } from '../../../model/news.model';
         gap: var(--spacing-sm);
       }
 
+      .indicator {
+        width: 0px;
+       }
+
       .carousel-btn {
         width: 40px;
         height: 40px;
@@ -364,9 +368,13 @@ export class NewsSectionComponent implements OnInit, OnDestroy, AfterViewInit {
   currentSlide: number = 0;
   maxSlides: number = 0;
   translateX: number = 0;
-  indicators: number[] = [];
+  
+  get indicators(): number[] {
+    return Array.from({ length: this.maxSlides + 1 }, (_, i) => i);
+  }
   
   private subscriptions: Subscription = new Subscription();
+  private resizeHandler = () => setTimeout(() => this.calculateSlides());
 
   constructor(
     private newsService: NewsService,
@@ -387,17 +395,16 @@ export class NewsSectionComponent implements OnInit, OnDestroy, AfterViewInit {
 
     // Set initial maxSlides based on typical desktop layout (assuming 3 visible cards)
     this.maxSlides = Math.max(0, this.articles.length - 3);
-    this.indicators = Array.from({ length: this.maxSlides + 1 }, (_, i) => i);
   }
 
   ngAfterViewInit() {
-    this.calculateSlides();
-    window.addEventListener('resize', () => this.calculateSlides());
+    setTimeout(() => this.calculateSlides());
+    window.addEventListener('resize', this.resizeHandler);
   }
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
-    window.removeEventListener('resize', () => this.calculateSlides());
+    window.removeEventListener('resize', this.resizeHandler);
   }
 
   calculateSlides() {
@@ -409,7 +416,6 @@ export class NewsSectionComponent implements OnInit, OnDestroy, AfterViewInit {
     const visibleCards = Math.floor(containerWidth / (cardWidth + gap));
     
     this.maxSlides = Math.max(0, this.articles.length - visibleCards);
-    this.indicators = Array.from({ length: this.maxSlides + 1 }, (_, i) => i);
     
     // Reset slide if current slide is beyond max
     if (this.currentSlide > this.maxSlides) {

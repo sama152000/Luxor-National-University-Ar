@@ -469,6 +469,7 @@ a:hover {
   position: relative;
   z-index: 100;
   padding: var(--spacing-md) 0;
+  align-items: space-around !important;
 }
 
 .hero {
