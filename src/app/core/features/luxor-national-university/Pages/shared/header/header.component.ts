@@ -19,8 +19,6 @@ import { NavigationItem, LanguageOption } from '../../../model/navigation.model'
               [src]="universityInfo.logo"
               [alt]="getLocalizedText(universityInfo.name, universityInfo.nameAr)"
               class="logo"
-              width="250"
-              height="50"
             >
             <!-- <h5 class="text-white mb-0 ms-3 d-none d-md-block">
               {{ getLocalizedText(universityInfo.name, universityInfo.nameAr) }}
@@ -78,6 +76,8 @@ import { NavigationItem, LanguageOption } from '../../../model/navigation.model'
   `,
   styles: [`
     .logo {
+      width: 250px;
+      height: 50px;
       object-fit: contain;
       background-color: white;
     }
@@ -107,6 +107,11 @@ import { NavigationItem, LanguageOption } from '../../../model/navigation.model'
 
     /* Mobile Responsive Styles */
     @media (max-width: 768px) {
+      .logo {
+        width: 200px;
+        height: 40px;
+      }
+
       .icon-container {
         width: 100px;
         height: 100px;
@@ -125,6 +130,11 @@ import { NavigationItem, LanguageOption } from '../../../model/navigation.model'
     }
 
     @media (max-width: 480px) {
+      .logo {
+        width: 120px;
+        height: 24px;
+      }
+
       .icon-container {
         width: 80px;
         height: 80px;
