@@ -131,7 +131,7 @@ import { NavigationItem, LanguageOption } from '../../../model/navigation.model'
 
     @media (max-width: 480px) {
       .logo {
-        width: 300px;
+        width: 200px;
         height: 40px;
       }
 
