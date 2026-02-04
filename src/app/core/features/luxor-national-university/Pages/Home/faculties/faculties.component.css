@@ -1,0 +1,226 @@
+.orbit-section {
+  padding: var(--spacing-xxxl) 0;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark), var(--secondary-color));
+  background-size: 300% 300%;
+  animation: gradientMove 12s ease infinite;
+  color: var(--white);
+  text-align: center;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+.orbit-title {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  margin-bottom: var(--spacing-xxxl);
+  color: #e6ebf3;
+  font-weight: 800;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+.orbit-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 var(--spacing-md);
+}
+
+
+.orbit-center {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary-darker));
+  color: var(--white);
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 18px 45px rgba(0,0,0,0.35);
+  transition: var(--transition-smooth);
+}
+
+/* Faculty item wrapper - stacks circle and name */
+.faculty-item-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  height: 260px;
+  justify-content: flex-start;
+}
+
+/* Faculty name - displayed below the circle */
+.faculty-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--white);
+  text-align: center;
+  padding: 0 var(--spacing-sm);
+  line-height: 1.2;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.orbit-center:hover {
+  transform: scale(1.15);
+  color: var(--white);
+  text-decoration: none;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+}
+
+.orbit-center span {
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+}
+
+.orbit-center small {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.orbit-item {
+  position: relative;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  background-size: contain;
+  background-position: center;
+  box-shadow: 0 18px 45px rgba(0,0,0,0.35);
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.orbit-item i,
+.orbit-item span {
+  position: relative;
+  z-index: 2;
+}
+
+.orbit-item i {
+  font-size: 34px;
+  margin-bottom: var(--spacing-xs);
+  transition: var(--transition-smooth);
+}
+
+.orbit-item span {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 0 var(--spacing-sm);
+  line-height: 1.2;
+  transition: var(--transition-smooth);
+}
+
+.orbit-item .overlay {
+  position: absolute;
+  inset: 0;
+  /* background: linear-gradient(to top, rgba(0,0,0,0.75), rgba(56, 131, 147, 0.3)); */
+  z-index: 1;
+  transition: var(--transition-smooth);
+}
+
+.orbit-item:hover {
+  transform: scale(1.2);
+  z-index: 10;
+  animation-play-state: paused;
+}
+
+.orbit-item:hover .overlay {
+  background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(56, 131, 147, 0.5));
+}
+
+.orbit-item:hover i {
+  transform: scale(1.2);
+}
+
+/* Positions - Grid layout handles positioning */
+.item-1, .item-2, .item-3, .item-4, .item-5, .item-6 {
+  position: relative;
+  top: auto;
+  left: auto;
+  right: auto;
+  bottom: auto;
+  transform: none;
+  animation: none;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .orbit-wrapper {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .faculty-item-wrapper {
+    height: 200px;
+  }
+
+  .orbit-item,
+  .orbit-center {
+    width: 140px;
+    height: 140px;
+  }
+
+  .faculty-name {
+    font-size: 0.9rem;
+  }
+
+  .orbit-item span {
+    font-size: 12px;
+  }
+
+  .orbit-item i {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 600px) {
+  .orbit-wrapper {
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    gap: 1rem;
+  }
+
+  .faculty-item-wrapper {
+    height: 140px;
+  }
+
+  .orbit-item,
+  .orbit-center {
+    width: 80px;
+    height: 80px;
+  }
+
+  .faculty-name {
+    font-size: 0.65rem;
+  }
+
+  .orbit-center span {
+    font-size: 0.75rem;
+  }
+
+  .orbit-item span {
+    font-size: 9px;
+    padding: 0 var(--spacing-xs);
+  }
+
+  .orbit-item i {
+    font-size: 20px;
+  }
+}

@@ -1,3 +1,35 @@
-<p>
-  hero works!
-</p>
+ <section class="hero-slider">
+      <div class="slides">
+        <div 
+          *ngFor="let slide of slides" 
+          class="slide"
+          [class.active]="slide.active"
+          [style.background-image]="'url(' + slide.backgroundImage + ')'"
+        >
+          <div class="slide-content">
+            <h1 class="motion-title" [class.active]="slide.active">
+              <span *ngFor="let word of slide.title.words; let i = index" 
+                    [style.animation-delay]="(i * 0.2 + 0.2) + 's'">
+                {{ word }}
+              </span>
+            </h1>
+            <p class="slide-subtitle">{{ slide.subtitle }}</p>
+          </div>
+
+          <!-- نقاط التقدم داخل الشريحة -->
+          <div class="slider-dots">
+            <div 
+              *ngFor="let dot of dots; let i = index" 
+              class="dot"
+              [class.active]="dot.active"
+              (click)="switchSlide(i)"
+            >
+              <svg>
+                <circle cx="22" cy="22" r="20"></circle>
+              </svg>
+              <span>{{ dot.label }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>

@@ -1,0 +1,150 @@
+.video-section {
+  padding: var(--spacing-xxxl) 0;
+  background-image: url("/assets/mag.PNG");
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 70vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.video-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color:#d6c4a363;
+  z-index: 1;
+}
+
+.video-section > * {
+  position: relative;
+  z-index: 2;
+}
+
+
+.video-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: var(--spacing-xxl);
+  align-items: center;
+  height: 100%;
+}
+
+.video-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center !important;
+  height: 100%;
+  text-align: right;
+}
+
+.video-text h2 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-dark);
+  font-weight: 700;
+  
+}
+
+.video-text p {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--text-dark);
+  margin-bottom: 0;
+}
+
+.video-text .download-btn {
+  margin-top: var(--spacing-md);
+  display: inline-flex;
+  align-self: flex-start; /* push button to the right edge of the .video-text column */
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition-smooth);
+  background: linear-gradient(135deg, var(--primary-light), var(--primary-color));
+  color: var(--white);
+}
+
+.download-btn:hover,
+.download-btn:focus {
+  transform: translateY(-3px);
+  text-decoration: none;
+  outline: none;
+}
+
+
+
+
+
+.video-frame {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+  transition: var(--transition-smooth);
+}
+
+.video-frame:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+}
+
+.video-frame iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.video-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 28px;
+  box-shadow: inset 0 0 0 2px rgba(56, 131, 147, 0.1);
+  pointer-events: none;
+  transition: var(--transition-smooth);
+}
+
+.video-frame:hover::after {
+  box-shadow: inset 0 0 0 2px rgba(56, 131, 147, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .video-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+    text-align: center;
+  }
+
+  .video-text h2 {
+    font-size: 2.2rem;
+  }
+
+  .video-text p {
+    font-size: 1rem;
+  }
+
+  .video-text .download-btn {
+    align-self: center; /* center the button on small screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .video-frame {
+    border-radius: var(--radius-lg);
+  }
+
+  .video-frame::after {
+    border-radius: var(--radius-lg);
+  }
+}

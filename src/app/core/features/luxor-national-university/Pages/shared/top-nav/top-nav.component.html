@@ -1,0 +1,17 @@
+<div class="top-header">
+  <div class="container-custom top-header-inner">
+    <div class="top-info">
+      <span> {{ contactInfo.phone }} <i class="fa-solid fa-phone"></i></span>
+      <span>{{ contactInfo.email }} <i class="fa-solid fa-envelope"></i> </span>
+    </div>
+    <div class="top-lang">
+      <button 
+        *ngFor="let lang of languages" 
+        [class.active]="lang.active"
+        (click)="switchLanguage(lang.code)"
+      >
+        {{ lang.name }}
+      </button>
+    </div>
+  </div>
+</div>

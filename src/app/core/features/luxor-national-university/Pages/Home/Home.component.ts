@@ -1,15 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoaderComponent } from '../../Pages/shared/loader/loader.component';
-import { HeaderComponent } from '../../Pages/shared/header/header.component';
-import { HeroComponent } from '../../Pages/Home/hero/hero.component';
-import { VisionMissionComponent } from '../../Pages/Home/vision-mission/vision-mission.component';
-import { FooterComponent } from '../../Pages/shared/footer/footer.component';
+// import { FooterComponent } from '../../Pages/shared/footer/footer.component';
 import { HomeService } from '../../Services/home.service';
 import { LoaderConfig } from '../../model/home.model';
-import { UniversityGoalsComponent } from "./university-goals/university-goals.component";
-import { NewsSectionComponent } from "./news-section/news-section.component";
-import { FacultiesSectionComponent } from "./faculties-section/faculties-section.component";
+import { TopNavComponent } from "../shared/top-nav/top-nav.component";
+import { HeroComponent } from "./hero/hero.component";
+import { DeansWordComponent } from "./deans-word/deans-word.component";
+import { MainNavComponent } from "../shared/main-nav/main-nav.component";
+import { DiscoverComponent } from "./discover/discover.component";
+import { NewsComponent } from "./news/news.component";
+import { EventsComponent } from "./events/events.component";
+import { FacultiesComponent } from "./faculties/faculties.component";
+import { StatsComponent } from "./stats/stats.component";
+import { FooterComponent } from "../shared/footer/footer.component";
+import { BookComponent } from "./book/book.component";
 
 @Component({
   selector: 'app-home',
@@ -17,13 +22,17 @@ import { FacultiesSectionComponent } from "./faculties-section/faculties-section
   imports: [
     CommonModule,
     LoaderComponent,
-    HeaderComponent,
+    TopNavComponent,
     HeroComponent,
-    VisionMissionComponent,
+    DeansWordComponent,
+    MainNavComponent,
+    DiscoverComponent,
+    NewsComponent,
+    EventsComponent,
+    FacultiesComponent,
+    StatsComponent,
     FooterComponent,
-    UniversityGoalsComponent,
-    NewsSectionComponent,
-    FacultiesSectionComponent
+    BookComponent
 ],
   template: `
     <!-- Loader -->
@@ -32,23 +41,25 @@ import { FacultiesSectionComponent } from "./faculties-section/faculties-section
       (loadingComplete)="onLoadingComplete()"
     ></app-loader>
 
+    <app-top-nav></app-top-nav>
+    <app-main-nav></app-main-nav>
     <!-- Main Content -->
-    <div *ngIf="!showLoader" class="main-content fade-in">
       <!-- Header & Hero Container -->
-      <div class="header-hero-container">
-        <app-header></app-header>
-        <app-hero></app-hero>
-      </div>
+<app-hero></app-hero>
+<app-book></app-book>
+<!-- <app-deans-word></app-deans-word> -->
+<app-news></app-news>
+<app-discover></app-discover>
+<app-events></app-events>
+<app-faculties></app-faculties>
+<app-stats></app-stats>
+
 
       <!-- Vision & Mission -->
-      <app-vision-mission></app-vision-mission>
       
-<app-university-goals></app-university-goals>
-<app-news-section></app-news-section>
-<app-faculties-section></app-faculties-section>
       <!-- Footer -->
-      <app-footer></app-footer>
-    </div>
+       <app-footer></app-footer>
+      <!-- <app-footer></app-footer> -->
   `,
   styles: [`
     .main-content {
