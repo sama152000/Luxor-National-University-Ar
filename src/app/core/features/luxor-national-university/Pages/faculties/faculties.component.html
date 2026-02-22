@@ -1,0 +1,158 @@
+<div class="faculties-container" dir="rtl">
+  <div class="container-custom">
+    <!-- Page Header -->
+    <div class="page-header fade-in">
+      <h1>كليات الجامعة</h1>
+      <p class="lead">تعرف على كليات الجامعة المتنوعة وبرامجها الأكاديمية المتميزة</p>
+    </div>
+
+    <!-- Search Section -->
+    <div class="search-section slide-up animate-delay-1">
+      <div class="search-wrapper">
+        <!-- Text Search -->
+        <div class="text-search">
+          <div class="search-input-wrapper">
+            <i class="pi pi-search"></i>
+            <input
+              type="text"
+              class="search-input"
+              placeholder="البحث عن كلية..."
+              [(ngModel)]="searchFilter.searchText"
+              (input)="onSearchTextChange()"
+            >
+          </div>
+        </div>
+
+        <!-- Alphabetical Filter -->
+        <!-- <div class="alphabet-filter">
+          <div class="alphabet-wrapper">
+            <div class="alphabet-list">
+              <button
+                *ngFor="let letter of alphabetLetters"
+                class="alphabet-btn"
+                [class.active]="isActiveAlphabetFilter(letter)"
+                (click)="setAlphabetFilter(letter)"
+              >
+                {{ letter }}
+              </button>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+
+    <!-- Faculties Grid -->
+    <div class="faculties-grid-container slide-up animate-delay-2">
+      <!-- Loading State -->
+      <div *ngIf="isLoading" class="loading-container">
+        <div class="loading-spinner"></div>
+        <p>جاري تحميل الكليات...</p>
+      </div>
+
+      <!-- Faculties Cards -->
+      <div *ngIf="!isLoading" class="faculties-grid">
+        <div 
+          *ngFor="let faculty of paginatedFaculties; let i = index"
+          class="faculty-card hover-lift"
+          [class]="'animate-delay-' + (i % 4 + 1)"
+          (click)="viewFacultyDetails(faculty.id)"
+        >
+          <!-- Card Image -->
+          <div class="card-image">
+            <img 
+              [src]="faculty.mainImage" 
+              [alt]="faculty.name"
+              loading="lazy"
+            >
+            <!-- <div class="established-badge">
+              تأسست {{ faculty.establishedYear }}
+            </div> -->
+          </div>
+
+          <!-- Card Content -->
+          <div class="card-content">
+            <h3 class="card-title">{{ faculty.name }}</h3>
+            
+            <p class="card-description">{{ faculty.shortDescription }}</p>
+            
+            <!-- <div class="card-stats">
+              <div class="stat-item">
+                <i class="pi pi-users"></i>
+                <span>{{ faculty.studentsCount }} طالب</span>
+              </div>
+              <div class="stat-item">
+                <i class="pi pi-user"></i>
+                <span>{{ faculty.staffCount }} عضو هيئة تدريس</span>
+              </div>
+              <div class="stat-item">
+                <i class="pi pi-book"></i>
+                <span>{{ faculty.programsCount }} برنامج</span>
+              </div>
+            </div> -->
+            
+            <div class="card-footer">
+              <button class="btn btn-primary">
+                عرض التفاصيل
+                <i class="pi pi-arrow-left"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- No Results -->
+      <div *ngIf="!isLoading && paginatedFaculties.length === 0" class="no-results">
+        <i class="pi pi-info-circle"></i>
+        <h3>لا توجد كليات متاحة</h3>
+        <p>لا توجد كليات تطابق معايير البحث المحددة</p>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <div 
+      *ngIf="!isLoading && totalPages > 1" 
+      class="pagination-container slide-up animate-delay-3"
+    >
+      <div class="pagination">
+        <!-- Previous Button -->
+        <button 
+          class="pagination-btn"
+          [disabled]="currentPage === 1"
+          (click)="previousPage()"
+        >
+          <i class="pi pi-angle-right"></i>
+          السابق
+        </button>
+
+        <!-- Page Numbers -->
+        <div class="page-numbers">
+          <button
+            *ngFor="let pageNum of getPageNumbers()"
+            class="page-number"
+            [class.active]="pageNum === currentPage"
+            (click)="goToPage(pageNum)"
+          >
+            {{ pageNum }}
+          </button>
+        </div>
+
+        <!-- Next Button -->
+        <button 
+          class="pagination-btn"
+          [disabled]="currentPage === totalPages"
+          (click)="nextPage()"
+        >
+          التالي
+          <i class="pi pi-angle-left"></i>
+        </button>
+      </div>
+
+      <!-- Pagination Info -->
+      <div class="pagination-info">
+        عرض {{ (currentPage - 1) * itemsPerPage + 1 }} إلى 
+        {{ getMinValue(currentPage * itemsPerPage, filteredFaculties.length) }} 
+        من أصل {{ filteredFaculties.length }} كلية
+      </div>
+    </div>
+  </div>
+</div>

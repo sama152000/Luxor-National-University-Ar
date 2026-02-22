@@ -1,0 +1,89 @@
+<div class="services-page" dir="ltr">
+  <section class="services-hero">
+    <div class="container-custom">
+      <h1 class="page-title fade-in">خدماتنا</h1>
+      <p class="page-subtitle slide-up animate-delay-1">نقدم مجموعة شاملة من الخدمات الأكاديمية والبحثية المتميزة</p>
+    </div>
+  </section>
+
+  <section class="services-slider-section">
+    <div class="container-custom">
+      <div class="slider-container" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
+        
+        <!-- Navigation Arrows -->
+        <button 
+          class="slider-arrow slider-arrow-left" 
+          (click)="prevSlide()"
+          [disabled]="isTransitioning"
+          aria-label="الشريحة السابقة">
+          <i class="pi pi-chevron-left"></i>
+        </button>
+
+        <button 
+          class="slider-arrow slider-arrow-right" 
+          (click)="nextSlide()"
+          [disabled]="isTransitioning"
+          aria-label="الشريحة التالية">
+          <i class="pi pi-chevron-right"></i>
+        </button>
+
+        <!-- Slider Content -->
+        <div class="slider-wrapper">
+          <div class="slides-container" 
+     [style.transform]="'translateX(' + (-currentIndex * 20) + '%)'">
+
+            
+            <div 
+              *ngFor="let service of services; trackBy: trackByService; let i = index" 
+              class="slide"
+              [class.active]="i === currentIndex">
+              
+              <div class="slide-content">
+                <div class="slide-header">
+                  <span class="slide-number">{{ i + 1 }} / {{ services.length }}</span>
+                  <h2 class="service-title">{{ service.titleAr }}</h2>
+                  <h3 class="service-title-en">{{ service.title }}</h3>
+                </div>
+
+                <div class="slide-body">
+                  <p class="service-description">{{ service.descriptionAr }}</p>
+                  
+                  <div *ngIf="service.bulletPointsAr && service.bulletPointsAr.length > 0" class="service-features">
+                    <h4 class="features-title">المزايا الرئيسية:</h4>
+                    <ul class="features-list">
+                      <li *ngFor="let point of service.bulletPointsAr; let j = index" 
+                          class="feature-item"
+                          [style.animation-delay]="(j * 0.1) + 's'">
+                        <i class="pi pi-check-circle feature-icon"></i>
+                        <span>{{ point }}</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dots Indicator -->
+        <div class="slider-dots">
+          <button 
+            *ngFor="let service of services; let i = index"
+            class="dot"
+            [class.active]="i === currentIndex"
+            (click)="goToSlide(i)"
+            [attr.aria-label]="'الانتقال إلى الشريحة ' + (i + 1)">
+          </button>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="slider-progress">
+          <div class="progress-bar" [style.transform]="'translateX(-' + (currentIndex * 100) + '%)'"
+></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+</div>

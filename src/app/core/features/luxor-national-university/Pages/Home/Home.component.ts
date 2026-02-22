@@ -41,8 +41,8 @@ import { BookComponent } from "./book/book.component";
       (loadingComplete)="onLoadingComplete()"
     ></app-loader>
 
-    <app-top-nav></app-top-nav>
-    <app-main-nav></app-main-nav>
+    <!-- <app-top-nav></app-top-nav>
+    <app-main-nav></app-main-nav> -->
     <!-- Main Content -->
       <!-- Header & Hero Container -->
 <app-hero></app-hero>
@@ -58,7 +58,7 @@ import { BookComponent } from "./book/book.component";
       <!-- Vision & Mission -->
       
       <!-- Footer -->
-       <app-footer></app-footer>
+       <!-- <app-footer></app-footer> -->
       <!-- <app-footer></app-footer> -->
   `,
   styles: [`

@@ -1,0 +1,131 @@
+<div class="news-container" dir="rtl">
+  <div class="container-custom">
+    <!-- Page Header -->
+    <div class="page-header fade-in">
+      <h1>الأخبار والفعاليات</h1>
+      <p class="lead">تابع آخر الأخبار والأنشطة والفعاليات في الجامعة</p>
+    </div>
+
+    <!-- Category Tabs -->
+    <div class="tabs-container slide-up animate-delay-1">
+      <div class="tabs-wrapper">
+        <div class="tabs-list">
+          <button
+            *ngFor="let category of categories"
+            class="tab-item"
+            [class.active]="isActiveCategory(category.id)"
+            (click)="setActiveCategory(category.id)"
+          >
+            <span>{{ category.name }}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- News Grid -->
+    <div class="news-grid-container slide-up animate-delay-2">
+      <!-- Loading State -->
+      <div *ngIf="isLoading" class="loading-container">
+        <div class="loading-spinner"></div>
+        <p>جاري تحميل الأخبار...</p>
+      </div>
+
+      <!-- News Cards -->
+      <div *ngIf="!isLoading" class="news-grid">
+        <div 
+          *ngFor="let news of paginatedNews; let i = index"
+          class="news-card hover-lift"
+          [class]="'animate-delay-' + (i % 4 + 1)"
+          (click)="viewNewsDetails(news.id)"
+        >
+          <!-- Card Image -->
+          <div class="card-image">
+            <img 
+              [src]="news.mainImage" 
+              [alt]="news.title"
+              loading="lazy"
+            >
+            <div class="category-badge">
+              {{ news.category }}
+            </div>
+          </div>
+
+          <!-- Card Content -->
+          <div class="card-content">
+            <div class="card-meta">
+              <span class="date">
+                <i class="pi pi-calendar"></i>
+                {{ formatDate(news.date) }}
+              </span>
+            </div>
+
+            <h3 class="card-title">{{ news.title }}</h3>
+            
+            <p class="card-description">{{ news.shortDescription }}</p>
+            
+            <div class="card-footer">
+              <button class="btn btn-primary">
+                اقرأ المزيد
+                <i class="pi pi-arrow-left"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- No Results -->
+      <div *ngIf="!isLoading && paginatedNews.length === 0" class="no-results">
+        <i class="pi pi-info-circle"></i>
+        <h3>لا توجد أخبار متاحة</h3>
+        <p>لا توجد أخبار في هذا القسم حالياً</p>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <div 
+      *ngIf="!isLoading && totalPages > 1" 
+      class="pagination-container slide-up animate-delay-3"
+    >
+      <div class="pagination">
+        <!-- Previous Button -->
+        <button 
+          class="pagination-btn"
+          [disabled]="currentPage === 1"
+          (click)="previousPage()"
+        >
+          <i class="pi pi-angle-right"></i>
+          السابق
+        </button>
+
+        <!-- Page Numbers -->
+        <div class="page-numbers">
+          <button
+            *ngFor="let pageNum of getPageNumbers()"
+            class="page-number"
+            [class.active]="pageNum === currentPage"
+            (click)="goToPage(pageNum)"
+          >
+            {{ pageNum }}
+          </button>
+        </div>
+
+        <!-- Next Button -->
+        <button 
+          class="pagination-btn"
+          [disabled]="currentPage === totalPages"
+          (click)="nextPage()"
+        >
+          التالي
+          <i class="pi pi-angle-left"></i>
+        </button>
+      </div>
+
+      <!-- Pagination Info -->
+      <div class="pagination-info">
+        عرض {{ (currentPage - 1) * itemsPerPage + 1 }} إلى 
+        {{ getEndIndex() }} 
+        من أصل {{ filteredNews.length }} خبر
+      </div>
+    </div>
+  </div>
+</div>

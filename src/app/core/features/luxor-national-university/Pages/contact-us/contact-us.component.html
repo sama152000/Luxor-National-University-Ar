@@ -1,0 +1,161 @@
+<div class="contact-us-page" dir="rtl">
+  <section class="contact-hero-section">
+    <div class="container-custom">
+      <div class="contact-card fade-in">
+        <!-- University Logo -->
+        <div class="logo-section">
+          <div class="logo-circle">
+            <span class="logo-text">LNU</span>
+            <p class="logo-subtitle">جامعة الأقصر الأهلية</p>
+          </div>
+        </div>
+
+        <!-- University Name -->
+        <h1 class="university-name">{{ universityInfo?.nameAr || 'جامعة الأقصر الأهلية' }}</h1>
+        <h2 class="contact-title">معلومات التواصل</h2>
+
+        <!-- Main Content Grid -->
+        <div class="contact-content">
+          <!-- Contact Info Section -->
+          <div class="contact-info-section">
+            <div class="contact-details">
+              <!-- Phone Numbers -->
+              <div class="phone-section">
+                <h3 class="section-subtitle">التواصل</h3>
+                <div class="contact-list">
+                  <div *ngFor="let contact of contactInfo; trackBy: trackByContact" class="contact-item slide-right" [class.animate-delay-1]="contact.id === '1'" [class.animate-delay-2]="contact.id === '2'" [class.animate-delay-3]="contact.id === '3'" [class.animate-delay-4]="contact.id === '4'">
+                    <span class="contact-name">{{ contact.name }}</span>
+                    <span class="contact-phone">{{ contact.phone }}</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Email Section -->
+              <div class="email-section slide-right animate-delay-4">
+                <h3 class="section-subtitle">البريد الإلكتروني</h3>
+                <div class="email-item">
+                  <i class="pi pi-envelope email-icon"></i>
+                  <span class="email-text">{{ universityInfo?.email || 'info.lnu@luxor.edu.eg' }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Illustration Section -->
+          <div class="illustration-section">
+            <div class="illustration-container slide-left">
+              <div class="person-illustration">
+                <div class="person-avatar">
+                  <i class="pi pi-user"></i>
+                </div>
+                <div class="communication-icons">
+                  <div class="icon-bubble phone-bubble">
+                    <i class="pi pi-phone"></i>
+                  </div>
+                  <div class="icon-bubble message-bubble">
+                    <i class="pi pi-comments"></i>
+                  </div>
+                  <div class="icon-bubble email-bubble">
+                    <i class="pi pi-envelope"></i>
+                  </div>
+                </div>
+                <div class="laptop-illustration">
+                  <div class="laptop-screen"></div>
+                  <div class="laptop-keyboard"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form Section -->
+  <!-- <section class="contact-form-section">
+    <div class="container-custom">
+      <div class="form-container slide-up">
+        <h3 class="form-title">تواصل معنا</h3>
+        
+        <div *ngIf="isSubmitted" class="success-message fade-in">
+          <i class="pi pi-check-circle"></i>
+          <p>تم إرسال رسالتك بنجاح. سنتواصل معك قريباً.</p>
+        </div>
+
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" *ngIf="!isSubmitted">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="name">الاسم *</label>
+                <input
+                  type="text"
+                  id="name"
+                  formControlName="name"
+                  class="form-control"
+                  [class.is-invalid]="isFieldInvalid('name')"
+                  placeholder="اكتب اسمك الكامل"
+                >
+                <div class="invalid-feedback">{{ getFieldError('name') }}</div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="email">البريد الإلكتروني *</label>
+                <input
+                  type="email"
+                  id="email"
+                  formControlName="email"
+                  class="form-control"
+                  [class.is-invalid]="isFieldInvalid('email')"
+                  placeholder="example@domain.com"
+                >
+                <div class="invalid-feedback">{{ getFieldError('email') }}</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="subject">الموضوع *</label>
+            <input
+              type="text"
+              id="subject"
+              formControlName="subject"
+              class="form-control"
+              [class.is-invalid]="isFieldInvalid('subject')"
+              placeholder="موضوع الرسالة"
+            >
+            <div class="invalid-feedback">{{ getFieldError('subject') }}</div>
+          </div>
+
+          <div class="form-group">
+            <label for="message">الرسالة *</label>
+            <textarea
+              id="message"
+              formControlName="message"
+              class="form-control"
+              rows="5"
+              [class.is-invalid]="isFieldInvalid('message')"
+              placeholder="اكتب رسالتك هنا..."
+            ></textarea>
+            <div class="invalid-feedback">{{ getFieldError('message') }}</div>
+          </div>
+
+          <button
+            type="submit"
+            class="btn btn-primary submit-btn"
+            [disabled]="contactForm.invalid || isSubmitting"
+          >
+            <span *ngIf="isSubmitting">
+              <i class="pi pi-spin pi-spinner"></i>
+              جارٍ الإرسال...
+            </span>
+            <span *ngIf="!isSubmitting">
+              <i class="pi pi-send"></i>
+              إرسال الرسالة
+            </span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section> -->
+</div>

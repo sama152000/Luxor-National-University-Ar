@@ -35,7 +35,7 @@ export class NavigationService {
         id: '4',
         label: 'الخدمات',
         icon: 'fa-solid fa-flask',
-        route: '/research',
+        route: '/services',
         active: false
       },
       {
@@ -49,7 +49,7 @@ export class NavigationService {
         id: '6',
         label: 'اتصل بنا',
         icon: 'fa-solid fa-envelope',
-        route: '/contact',
+        route: '/contactInfo',
         active: false
       }
     ];

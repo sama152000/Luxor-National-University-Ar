@@ -1,0 +1,151 @@
+<div class="news-details-container" dir="rtl">
+  <div class="container-custom">
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="loading-container">
+      <div class="loading-spinner"></div>
+      <p>جاري تحميل تفاصيل الخبر...</p>
+    </div>
+
+    <!-- News Content -->
+    <div *ngIf="!isLoading && news" class="news-content">
+      <!-- Back Button -->
+      <div class="back-button-container fade-in">
+        <button class="btn-back" (click)="goBack()">
+          <i class="pi pi-arrow-right"></i>
+          العودة للأخبار
+        </button>
+      </div>
+
+      <!-- News Header -->
+      <div class="news-header slide-up animate-delay-1">
+        <div class="category-badge">{{ news.category }}</div>
+        <h1 class="news-title">{{ news.title }}</h1>
+        
+        <div class="news-meta">
+          <div class="meta-item">
+            <i class="pi pi-calendar"></i>
+            <span>{{ formatDate(news.date) }}</span>
+          </div>
+          <div class="meta-item" *ngIf="news.author">
+            <i class="pi pi-user"></i>
+            <span>{{ news.author }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image Slider -->
+      <div class="image-slider slide-up animate-delay-2" *ngIf="news.images.length > 0">
+        <div class="slider-container">
+          <div class="main-image">
+            <img 
+              [src]="getCurrentImage()" 
+              [alt]="news.title"
+              loading="eager"
+            >
+            
+            <!-- Navigation Arrows -->
+            <button 
+              *ngIf="hasMultipleImages()"
+              class="slider-arrow slider-arrow-right"
+              (click)="previousImage()"
+            >
+              <i class="pi pi-chevron-right"></i>
+            </button>
+            
+            <button 
+              *ngIf="hasMultipleImages()"
+              class="slider-arrow slider-arrow-left"
+              (click)="nextImage()"
+            >
+              <i class="pi pi-chevron-left"></i>
+            </button>
+          </div>
+
+          <!-- Image Indicators -->
+          <div class="slider-indicators" *ngIf="hasMultipleImages()">
+            <button
+              *ngFor="let image of news.images; let i = index"
+              class="indicator"
+              [class.active]="i === currentImageIndex"
+              (click)="goToImage(i)"
+            ></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- News Content -->
+      <div class="article-content slide-up animate-delay-3">
+        <div class="content-wrapper" [innerHTML]="news.fullContent"></div>
+        
+        <!-- Tags -->
+        <div class="tags-container" *ngIf="news.tags && news.tags.length > 0">
+          <h4>الكلمات المفتاحية:</h4>
+          <div class="tags">
+            <span *ngFor="let tag of news.tags" class="tag">{{ tag }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Buttons -->
+      <div class="navigation-buttons slide-up animate-delay-4">
+        <button 
+          *ngIf="previousNews"
+          class="nav-btn nav-btn-previous"
+          (click)="goToPreviousNews()"
+        >
+          <i class="pi pi-chevron-right"></i>
+          <div class="nav-btn-content">
+            <span class="nav-label">الخبر السابق</span>
+            <span class="nav-title">{{ previousNews.title }}</span>
+          </div>
+        </button>
+
+        <button 
+          *ngIf="nextNews"
+          class="nav-btn nav-btn-next"
+          (click)="goToNextNews()"
+        >
+          <div class="nav-btn-content">
+            <span class="nav-label">الخبر التالي</span>
+            <span class="nav-title">{{ nextNews.title }}</span>
+          </div>
+          <i class="pi pi-chevron-left"></i>
+        </button>
+      </div>
+
+      <!-- Related News -->
+      <div class="related-news slide-up animate-delay-5" *ngIf="relatedNews.length > 0">
+        <h3>أخبار ذات صلة</h3>
+        
+        <div class="related-grid">
+          <div 
+            *ngFor="let related of relatedNews; let i = index"
+            class="related-card hover-lift"
+            [class]="'animate-delay-' + (i % 4 + 1)"
+            (click)="viewRelatedNews(related.id)"
+          >
+            <div class="related-image">
+              <img [src]="related.mainImage" [alt]="related.title">
+            </div>
+            
+            <div class="related-content">
+              <h4>{{ related.title }}</h4>
+              <p>{{ related.shortDescription }}</p>
+              <span class="related-date">{{ formatDate(related.date) }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="!isLoading && !news" class="error-state">
+      <i class="pi pi-exclamation-triangle"></i>
+      <h3>الخبر غير موجود</h3>
+      <p>عذراً، لم نتمكن من العثور على الخبر المطلوب</p>
+      <button class="btn btn-primary" (click)="goBack()">
+        العودة للأخبار
+      </button>
+    </div>
+  </div>
+</div>
