@@ -25,13 +25,16 @@ export class FacultyDetailsComponent implements OnInit {
   
   // About section
   activeAboutSection = 'overview';
-  aboutSections = [
-    { id: 'overview', title: 'نبذة عامة', icon: 'pi pi-home' },
-    { id: 'vision', title: 'الرؤية', icon: 'pi pi-eye' },
-    { id: 'mission', title: 'الرسالة', icon: 'pi pi-flag' },
-    { id: 'goals', title: 'الأهداف', icon: 'pi pi-bullseye' },
-    { id: 'history', title: 'تاريخ الكلية', icon: 'pi pi-clock' }
-  ];
+ aboutSections = [
+  { id: 'overview', title: 'نبذة عامة', icon: 'pi pi-home' },
+  { id: 'vision', title: 'الرؤية', icon: 'pi pi-eye' },
+  { id: 'mission', title: 'الرسالة', icon: 'pi pi-flag' },
+  { id: 'goals', title: 'الأهداف', icon: 'pi pi-bullseye' },
+  { id: 'history', title: 'تاريخ الكلية', icon: 'pi pi-clock' },
+  { id: 'details', title: 'التفاصيل', icon: 'pi pi-info-circle' },   // جديد
+  { id: 'location', title: 'تواصل معنا', icon: 'pi pi-map-marker' }      // جديد
+];
+
   
   // Programs pagination
   currentProgramsPage = 1;
@@ -50,6 +53,16 @@ export class FacultyDetailsComponent implements OnInit {
   selectedStaff: Staff | null = null;
   showProgramModal = false;
   showStaffModal = false;
+  
+  // Program modal tabs
+  activeProgramTab = 'overview';
+  programTabs = [
+    { id: 'overview', title: 'نبذة عامة', icon: 'pi pi-home' },
+    { id: 'vision', title: 'الرؤية', icon: 'pi pi-eye' },
+    { id: 'mission', title: 'الرسالة', icon: 'pi pi-flag' },
+    { id: 'goals', title: 'الأهداف', icon: 'pi pi-bullseye' },
+    { id: 'details', title: 'التفاصيل', icon: 'pi pi-info-circle' }
+  ];
   
   isLoading = true;
 
@@ -132,17 +145,29 @@ export class FacultyDetailsComponent implements OnInit {
   }
 
   getAboutContent(): string {
-    if (!this.faculty || !this.faculty.about) return '';
-    
-    switch (this.activeAboutSection) {
-      case 'overview': return this.faculty.about.overview || '';
-      case 'vision': return this.faculty.about.vision || '';
-      case 'mission': return this.faculty.about.mission || '';
-      case 'goals': return this.faculty.about.goals || '';
-      case 'history': return this.faculty.about.history || '';
-      default: return this.faculty.about.overview || '';
-    }
+  if (!this.faculty || !this.faculty.about) return '';
+  
+  switch (this.activeAboutSection) {
+    case 'overview': return this.faculty.about.overview || '';
+    case 'vision': return this.faculty.about.vision || '';
+    case 'mission': return this.faculty.about.mission || '';
+    case 'goals': return this.faculty.about.goals || '';
+    case 'history': return this.faculty.about.history || '';
+    case 'details': return this.faculty.about.details || '';
+    case 'location': 
+      // Format FacultyContact as HTML string
+      const location = this.faculty.about.location;
+      if (!location) return '';
+      let contactHtml = '<div class="location-contact">';
+      if (location.phone) contactHtml += `<p><i class="pi pi-phone"></i> ${location.phone}</p>`;
+      if (location.email) contactHtml += `<p><i class="pi pi-envelope"></i> ${location.email}</p>`;
+      if (location.website) contactHtml += `<p><i class="pi pi-globe"></i> ${location.website}</p>`;
+      contactHtml += '</div>';
+      return contactHtml;
+    default: return this.faculty.about.overview || '';
   }
+}
+
 
   // Programs Pagination Methods
   updateProgramsPagination(): void {
@@ -238,7 +263,30 @@ export class FacultyDetailsComponent implements OnInit {
   closeProgramModal(): void {
     this.showProgramModal = false;
     this.selectedProgram = null;
+    this.activeProgramTab = 'overview';
     document.body.style.overflow = 'auto';
+  }
+  
+  // Program Tab Methods
+  setActiveProgramTab(tabId: string): void {
+    this.activeProgramTab = tabId;
+  }
+  
+  isActiveProgramTab(tabId: string): boolean {
+    return this.activeProgramTab === tabId;
+  }
+  
+  getProgramContent(): string {
+    if (!this.selectedProgram) return '';
+    
+    switch (this.activeProgramTab) {
+      case 'overview': return this.selectedProgram.overview || '';
+      case 'vision': return this.selectedProgram.vision || '';
+      case 'mission': return this.selectedProgram.mission || '';
+      case 'goals': return this.selectedProgram.goals || '';
+      case 'details': return this.selectedProgram.details || '';
+      default: return this.selectedProgram.overview || '';
+    }
   }
 
   openStaffModal(staffMember: Staff): void {

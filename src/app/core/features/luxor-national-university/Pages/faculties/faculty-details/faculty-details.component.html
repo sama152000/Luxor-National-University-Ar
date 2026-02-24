@@ -18,77 +18,28 @@
 
       <!-- Faculty Header -->
       <div class="faculty-header slide-up animate-delay-1">
-        <h1 class="faculty-title">{{ faculty.name }}</h1>
+        <h2 class="faculty-title">{{ faculty.name }}</h2>
         <p class="faculty-description">{{ faculty.fullDescription }}</p>
-        
-        <div class="faculty-stats">
-          <div class="stat-card">
-            <i class="pi pi-users"></i>
-            <div class="stat-content">
-              <span class="stat-number">{{ faculty.studentsCount }}</span>
-              <span class="stat-label">طالب وطالبة</span>
-            </div>
-          </div>
-          <div class="stat-card">
-            <i class="pi pi-user"></i>
-            <div class="stat-content">
-              <span class="stat-number">{{ faculty.staffCount }}</span>
-              <span class="stat-label">عضو هيئة تدريس</span>
-            </div>
-          </div>
-          <div class="stat-card">
-            <i class="pi pi-book"></i>
-            <div class="stat-content">
-              <span class="stat-number">{{ faculty.programsCount }}</span>
-              <span class="stat-label">برنامج أكاديمي</span>
-            </div>
-          </div>
-          <div class="stat-card">
-            <i class="pi pi-calendar"></i>
-            <div class="stat-content">
-              <span class="stat-number">{{ faculty.establishedYear }}</span>
-              <span class="stat-label">سنة التأسيس</span>
-            </div>
-          </div>
-        </div>
       </div>
 
       <!-- Image Slider -->
       <div class="image-slider slide-up animate-delay-2" *ngIf="faculty.images && faculty.images.length > 0">
         <div class="slider-container">
           <div class="main-image">
-            <img 
-              [src]="getCurrentImage()" 
-              [alt]="faculty.name"
-              loading="eager"
-            >
-            
-            <!-- Navigation Arrows -->
-            <button 
-              *ngIf="hasMultipleImages()"
-              class="slider-arrow slider-arrow-right"
-              (click)="previousImage()"
-            >
+            <img [src]="getCurrentImage()" [alt]="faculty.name" loading="eager">
+            <button *ngIf="hasMultipleImages()" class="slider-arrow slider-arrow-right" (click)="previousImage()">
               <i class="pi pi-chevron-right"></i>
             </button>
-            
-            <button 
-              *ngIf="hasMultipleImages()"
-              class="slider-arrow slider-arrow-left"
-              (click)="nextImage()"
-            >
+            <button *ngIf="hasMultipleImages()" class="slider-arrow slider-arrow-left" (click)="nextImage()">
               <i class="pi pi-chevron-left"></i>
             </button>
           </div>
-
-          <!-- Image Indicators -->
           <div class="slider-indicators" *ngIf="hasMultipleImages()">
-            <button
-              *ngFor="let image of faculty.images; let i = index"
-              class="indicator"
-              [class.active]="i === currentImageIndex"
-              (click)="goToImage(i)"
-            ></button>
+            <button *ngFor="let image of faculty.images; let i = index"
+                    class="indicator"
+                    [class.active]="i === currentImageIndex"
+                    (click)="goToImage(i)">
+            </button>
           </div>
         </div>
       </div>
@@ -96,25 +47,19 @@
       <!-- About Faculty Section -->
       <div class="about-section slide-up animate-delay-3">
         <h2 class="section-title">عن الكلية</h2>
-        
-        <!-- About Tabs -->
         <div class="tabs-container">
           <div class="tabs-wrapper">
             <div class="tabs-list">
-              <button
-                *ngFor="let section of aboutSections"
-                class="tab-item"
-                [class.active]="isActiveAboutSection(section.id)"
-                (click)="setActiveAboutSection(section.id)"
-              >
+              <button *ngFor="let section of aboutSections"
+                      class="tab-item"
+                      [class.active]="isActiveAboutSection(section.id)"
+                      (click)="setActiveAboutSection(section.id)">
                 <i [class]="section.icon"></i>
                 <span>{{ section.title }}</span>
               </button>
             </div>
           </div>
         </div>
-
-        <!-- About Content -->
         <div class="about-content">
           <div class="content-wrapper" [innerHTML]="getAboutContent()"></div>
         </div>
@@ -123,34 +68,15 @@
       <!-- Programs Section -->
       <div class="programs-section slide-up animate-delay-4">
         <h2 class="section-title">برامج الكلية</h2>
-        
         <div class="programs-grid">
-          <div 
-            *ngFor="let program of paginatedPrograms; let i = index"
-            class="program-card hover-lift"
-            [class]="'animate-delay-' + (i % 4 + 1)"
-            (click)="openProgramModal(program)"
-          >
+          <div *ngFor="let program of paginatedPrograms; let i = index"
+               class="program-card hover-lift"
+               [class]="'animate-delay-' + (i % 4 + 1)"
+               (click)="openProgramModal(program)">
             <div class="program-header">
-              <div class="degree-badge">{{ program.degree }}</div>
-              <div class="duration-info">{{ program.duration }}</div>
+              <div class="degree-badge">{{ program.name }}</div>
             </div>
-            
             <div class="program-content">
-              <h3 class="program-title">{{ program.name }}</h3>
-              <p class="program-description">{{ program.shortDescription }}</p>
-              
-              <div class="program-details">
-                <div class="detail-item">
-                  <i class="pi pi-clock"></i>
-                  <span>{{ program.creditHours }} ساعة معتمدة</span>
-                </div>
-                <div class="detail-item">
-                  <i class="pi pi-globe"></i>
-                  <span>{{ program.language }}</span>
-                </div>
-              </div>
-              
               <button class="btn btn-primary">
                 عرض التفاصيل
                 <i class="pi pi-arrow-left"></i>
@@ -158,37 +84,26 @@
             </div>
           </div>
         </div>
-
         <!-- Programs Pagination -->
         <div *ngIf="totalProgramsPages > 1" class="pagination-container">
           <div class="pagination">
-            <button 
-              class="pagination-btn"
-              [disabled]="currentProgramsPage === 1"
-              (click)="previousProgramsPage()"
-            >
-              <i class="pi pi-angle-right"></i>
-              السابق
+            <button class="pagination-btn"
+                    [disabled]="currentProgramsPage === 1"
+                    (click)="previousProgramsPage()">
+              <i class="pi pi-angle-right"></i> السابق
             </button>
-
             <div class="page-numbers">
-              <button
-                *ngFor="let pageNum of getProgramsPageNumbers()"
-                class="page-number"
-                [class.active]="pageNum === currentProgramsPage"
-                (click)="goToProgramsPage(pageNum)"
-              >
+              <button *ngFor="let pageNum of getProgramsPageNumbers()"
+                      class="page-number"
+                      [class.active]="pageNum === currentProgramsPage"
+                      (click)="goToProgramsPage(pageNum)">
                 {{ pageNum }}
               </button>
             </div>
-
-            <button 
-              class="pagination-btn"
-              [disabled]="currentProgramsPage === totalProgramsPages"
-              (click)="nextProgramsPage()"
-            >
-              التالي
-              <i class="pi pi-angle-left"></i>
+            <button class="pagination-btn"
+                    [disabled]="currentProgramsPage === totalProgramsPages"
+                    (click)="nextProgramsPage()">
+              التالي <i class="pi pi-angle-left"></i>
             </button>
           </div>
         </div>
@@ -197,76 +112,47 @@
       <!-- Staff Section -->
       <div class="staff-section slide-up animate-delay-5">
         <h2 class="section-title">أعضاء هيئة التدريس</h2>
-        
         <div class="staff-grid">
-          <div 
-            *ngFor="let staffMember of paginatedStaff; let i = index"
-            class="staff-card hover-lift"
-            [class]="'animate-delay-' + (i % 4 + 1)"
-            [class.dean-card]="staffMember.isDean"
-            (click)="openStaffModal(staffMember)"
-          >
+          <div *ngFor="let staffMember of paginatedStaff; let i = index"
+               class="staff-card hover-lift"
+               [class]="'animate-delay-' + (i % 4 + 1)"
+               [class.dean-card]="staffMember.isDean"
+               (click)="openStaffModal(staffMember)">
             <div class="staff-image">
               <img [src]="staffMember.image" [alt]="staffMember.name">
               <div *ngIf="staffMember.isDean" class="dean-badge">
-                <i class="pi pi-star"></i>
-                عميد الكلية
+                <i class="pi pi-star"></i> عميد الكلية
               </div>
             </div>
-            
             <div class="staff-content">
               <h3 class="staff-name">{{ staffMember.name }}</h3>
               <p class="staff-position">{{ staffMember.position }}</p>
-              
-              <div class="staff-contact">
-                <div class="contact-item">
-                  <i class="pi pi-envelope"></i>
-                  <span>{{ staffMember.email }}</span>
-                </div>
-                <div class="contact-item" *ngIf="staffMember.office">
-                  <i class="pi pi-map-marker"></i>
-                  <span>{{ staffMember.office }}</span>
-                </div>
-              </div>
-              
               <button class="btn btn-primary">
-                عرض التفاصيل
-                <i class="pi pi-arrow-left"></i>
+                عرض التفاصيل <i class="pi pi-arrow-left"></i>
               </button>
             </div>
           </div>
         </div>
-
         <!-- Staff Pagination -->
         <div *ngIf="totalStaffPages > 1" class="pagination-container">
           <div class="pagination">
-            <button 
-              class="pagination-btn"
-              [disabled]="currentStaffPage === 1"
-              (click)="previousStaffPage()"
-            >
-              <i class="pi pi-angle-right"></i>
-              السابق
+            <button class="pagination-btn"
+                    [disabled]="currentStaffPage === 1"
+                    (click)="previousStaffPage()">
+              <i class="pi pi-angle-right"></i> السابق
             </button>
-
             <div class="page-numbers">
-              <button
-                *ngFor="let pageNum of getStaffPageNumbers()"
-                class="page-number"
-                [class.active]="pageNum === currentStaffPage"
-                (click)="goToStaffPage(pageNum)"
-              >
+              <button *ngFor="let pageNum of getStaffPageNumbers()"
+                      class="page-number"
+                      [class.active]="pageNum === currentStaffPage"
+                      (click)="goToStaffPage(pageNum)">
                 {{ pageNum }}
               </button>
             </div>
-
-            <button 
-              class="pagination-btn"
-              [disabled]="currentStaffPage === totalStaffPages"
-              (click)="nextStaffPage()"
-            >
-              التالي
-              <i class="pi pi-angle-left"></i>
+            <button class="pagination-btn"
+                    [disabled]="currentStaffPage === totalStaffPages"
+                    (click)="nextStaffPage()">
+              التالي <i class="pi pi-angle-left"></i>
             </button>
           </div>
         </div>
@@ -278,9 +164,7 @@
       <i class="pi pi-exclamation-triangle"></i>
       <h3>الكلية غير موجودة</h3>
       <p>عذراً، لم نتمكن من العثور على الكلية المطلوبة</p>
-      <button class="btn btn-primary" (click)="goBack()">
-        العودة للكليات
-      </button>
+      <button class="btn btn-primary" (click)="goBack()">العودة للكليات</button>
     </div>
   </div>
 
@@ -293,47 +177,33 @@
           <i class="pi pi-times"></i>
         </button>
       </div>
-      
       <div class="modal-body" *ngIf="selectedProgram">
-        <div class="program-info">
-          <div class="info-grid">
-            <div class="info-item">
-              <strong>الدرجة العلمية:</strong>
-              <span>{{ selectedProgram.degree }}</span>
-            </div>
-            <div class="info-item">
-              <strong>مدة الدراسة:</strong>
-              <span>{{ selectedProgram.duration }}</span>
-            </div>
-            <div class="info-item">
-              <strong>الساعات المعتمدة:</strong>
-              <span>{{ selectedProgram.creditHours }} ساعة</span>
-            </div>
-            <div class="info-item">
-              <strong>لغة التدريس:</strong>
-              <span>{{ selectedProgram.language }}</span>
-            </div>
+        <!-- Program Tabs -->
+        <div class="program-tabs">
+          <div class="tabs-list">
+            <button *ngFor="let tab of programTabs"
+                    class="tab-item"
+                    [class.active]="isActiveProgramTab(tab.id)"
+                    (click)="setActiveProgramTab(tab.id)">
+              <i [class]="tab.icon"></i>
+              <span>{{ tab.title }}</span>
+            </button>
           </div>
         </div>
-        
-        <div class="program-description" [innerHTML]="selectedProgram.fullDescription"></div>
-        
-        <div class="program-requirements" *ngIf="selectedProgram.admissionRequirements.length > 0">
-          <h4>متطلبات القبول:</h4>
-          <ul>
-            <li *ngFor="let requirement of selectedProgram.admissionRequirements">{{ requirement }}</li>
-          </ul>
-        </div>
-        
-        <div class="career-opportunities" *ngIf="selectedProgram.careerOpportunities.length > 0">
-          <h4>الفرص الوظيفية:</h4>
-          <ul>
-            <li *ngFor="let opportunity of selectedProgram.careerOpportunities">{{ opportunity }}</li>
-          </ul>
+        <!-- Program Tab Content -->
+        <div class="program-tab-content">
+          <div class="content-wrapper">
+            <div *ngIf="isActiveProgramTab('overview')" [innerHTML]="selectedProgram?.overview"></div>
+            <div *ngIf="isActiveProgramTab('vision')" [innerHTML]="selectedProgram?.vision"></div>
+            <div *ngIf="isActiveProgramTab('mission')" [innerHTML]="selectedProgram?.mission"></div>
+            <div *ngIf="isActiveProgramTab('goals')" [innerHTML]="selectedProgram?.goals"></div>
+            <div *ngIf="isActiveProgramTab('details')" [innerHTML]="selectedProgram?.details"></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
 
   <!-- Staff Modal -->
   <div *ngIf="showStaffModal" class="modal-overlay" (click)="closeStaffModal()">
@@ -352,51 +222,13 @@
           </div>
           
           <div class="profile-info">
-            <h3>{{ selectedStaff.name }}</h3>
+            <h4>{{ selectedStaff.name }}</h4>
             <p class="position">{{ selectedStaff.position }}</p>
             
-            <div class="contact-details">
-              <div class="contact-item">
-                <i class="pi pi-envelope"></i>
-                <span>{{ selectedStaff.email }}</span>
-              </div>
-              <div class="contact-item" *ngIf="selectedStaff.phone">
-                <i class="pi pi-phone"></i>
-                <span>{{ selectedStaff.phone }}</span>
-              </div>
-              <div class="contact-item" *ngIf="selectedStaff.office">
-                <i class="pi pi-map-marker"></i>
-                <span>{{ selectedStaff.office }}</span>
-              </div>
-            </div>
-          </div>
+          
         </div>
         
-        <div class="staff-biography">
-          <h4>السيرة الذاتية:</h4>
-          <p>{{ selectedStaff.biography }}</p>
-        </div>
-        
-        <div class="staff-qualifications" *ngIf="selectedStaff.qualifications.length > 0">
-          <h4>المؤهلات العلمية:</h4>
-          <ul>
-            <li *ngFor="let qualification of selectedStaff.qualifications">{{ qualification }}</li>
-          </ul>
-        </div>
-        
-        <div class="staff-specializations" *ngIf="selectedStaff.specializations.length > 0">
-          <h4>التخصصات:</h4>
-          <ul>
-            <li *ngFor="let specialization of selectedStaff.specializations">{{ specialization }}</li>
-          </ul>
-        </div>
-        
-        <div class="research-interests" *ngIf="selectedStaff.researchInterests.length > 0">
-          <h4>الاهتمامات البحثية:</h4>
-          <ul>
-            <li *ngFor="let interest of selectedStaff.researchInterests">{{ interest }}</li>
-          </ul>
-        </div>
+       
       </div>
     </div>
   </div>

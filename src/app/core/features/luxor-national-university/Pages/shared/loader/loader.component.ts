@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -22,5 +22,13 @@ import { CommonModule } from '@angular/common';
   `,
   styleUrl: './loader.component.css'
 })
-export class LoaderComponent {
+export class LoaderComponent implements OnInit {
+  @Output() loadingComplete = new EventEmitter<void>();
+  
+  ngOnInit() {
+    // Automatically emit loading complete after 3 seconds
+    setTimeout(() => {
+      this.loadingComplete.emit();
+    }, 3000);
+  }
 }

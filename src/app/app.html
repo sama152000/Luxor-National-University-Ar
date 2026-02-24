@@ -1,6 +1,10 @@
 <main>
   <router-outlet></router-outlet>
 </main>
+   <app-loader 
+      *ngIf="showLoader" 
+      (loadingComplete)="onLoadingComplete()"
+    ></app-loader>
 <div 
   *ngIf="showScrollButton" 
   (click)="scrollToTop()" 
@@ -12,7 +16,3 @@
   <p class="scroll-text">المرور لأعلي</p>
 </div>
 
-<app-top-nav></app-top-nav>
-<app-main-nav></app-main-nav>
-<router-outlet></router-outlet>
-<app-footer></app-footer>

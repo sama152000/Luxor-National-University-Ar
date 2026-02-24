@@ -36,33 +36,29 @@
   margin-bottom: var(--spacing-lg);
 }
 
-.logo-circle {
-  width: 80px;
-  height: 80px;
-  border: 3px solid var(--primary-color);
-  border-radius: 50%;
+.logo-box {
+  width: 255px;
+  height: 90px;
+  background: linear-gradient(135deg, var(--cream), var(--secondary-light));
+  border-radius: 18px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 0 auto var(--spacing-sm);
-  background: linear-gradient(135deg, var(--primary-light), var(--primary-color));
-  position: relative;
+  box-shadow: var(--shadow-md);
+  transition: all 0.4s ease;
 }
 
-.logo-text {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--white);
-  line-height: 1;
+.logo-box:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: var(--shadow-xl);
 }
 
-.logo-subtitle {
-  font-size: 0.6rem;
-  color: var(--white);
-  margin: 0;
-  opacity: 0.9;
-  font-weight: 600;
+.logo-img {
+  width: 200px;
+  height: 60px;
+  object-fit: contain;
+  border-radius: var(--radius-md);
 }
 
 /* Typography */

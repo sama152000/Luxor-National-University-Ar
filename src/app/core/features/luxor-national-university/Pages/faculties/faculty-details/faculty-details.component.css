@@ -690,6 +690,47 @@
   margin-bottom: var(--spacing-md);
 }
 
+/* Program Tabs in Modal */
+.program-tabs {
+  margin-bottom: var(--spacing-lg);
+}
+
+.program-tabs .tabs-wrapper {
+  background: var(--light-gray);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xs);
+}
+
+.program-tabs .tabs-list {
+  display: flex;
+  gap: var(--spacing-xs);
+  flex-wrap: wrap;
+}
+
+.program-tabs .tab-item {
+  flex: 1;
+  min-width: auto;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: 0.85rem;
+}
+
+.program-tabs .tab-item i {
+  font-size: 0.9rem;
+}
+
+.program-tab-content {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  min-height: 150px;
+  border: 1px solid var(--soft-gray);
+}
+
+.program-tab-content .content-wrapper {
+  padding: 0;
+}
+
 .program-requirements,
 .career-opportunities {
   margin-bottom: var(--spacing-lg);
@@ -715,6 +756,7 @@
 /* Staff Modal */
 .staff-profile {
   display: flex;
+  align-items: center;
   gap: var(--spacing-lg);
   margin-bottom: var(--spacing-lg);
   padding: var(--spacing-lg);
@@ -727,11 +769,10 @@
 }
 
 .profile-image img {
-  width: 120px;
-  height: 120px;
+  width: 190px;
+  height: 190px;
   border-radius: 50%;
   object-fit: cover;
-  border: 4px solid var(--primary-color);
 }
 
 .profile-info h3 {

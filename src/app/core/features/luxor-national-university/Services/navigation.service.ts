@@ -14,7 +14,7 @@ export class NavigationService {
         id: '1',
         label: 'الرئيسية',
         icon: 'fa-solid fa-house',
-        route: '/',
+        route: '/home',
         active: true
       },
       {

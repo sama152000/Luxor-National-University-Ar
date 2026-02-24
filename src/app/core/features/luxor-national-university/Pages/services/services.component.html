@@ -47,8 +47,13 @@
 
                 <div class="slide-body">
                   <p class="service-description">{{ service.descriptionAr }}</p>
-                  
-                  <div *ngIf="service.bulletPointsAr && service.bulletPointsAr.length > 0" class="service-features">
+                  <div class="service-action-container">
+                    <a routerLink="/contact-us" class="service-action-btn">
+                      اذهب الان
+                      <i class="pi pi-arrow-left"></i>
+                    </a>
+                  </div>
+                  <!-- <div *ngIf="service.bulletPointsAr && service.bulletPointsAr.length > 0" class="service-features">
                     <h4 class="features-title">المزايا الرئيسية:</h4>
                     <ul class="features-list">
                       <li *ngFor="let point of service.bulletPointsAr; let j = index" 
@@ -58,7 +63,7 @@
                         <span>{{ point }}</span>
                       </li>
                     </ul>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>

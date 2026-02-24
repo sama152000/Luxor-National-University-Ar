@@ -46,20 +46,7 @@ export class FacultiesService {
           backgroundImage: './assets/f2.jpg',
           cssClass: 'bg-math'
         },
-        // {
-        //   id: '5',
-        //   name: 'برنامج الأنظمة الذكية لصناعة السياحة والضيافة',
-        //   icon: 'fa-solid fa-dna',
-        //   backgroundImage: 'https://images.pexels.com/photos/2280549/pexels-photo-2280549.jpeg?auto=compress&cs=tinysrgb&w=800',
-        //   cssClass: 'bg-bio'
-        // },
-        // {
-        //   id: '6',
-        //   name: 'برنامج نظم المعلومات الأثرية والتراثية',
-        //   icon: 'fa-solid fa-atom',
-        //   backgroundImage: 'https://images.pexels.com/photos/1591447/pexels-photo-1591447.jpeg?auto=compress&cs=tinysrgb&w=800',
-        //   cssClass: 'bg-physics'
-        // }
+       
       ]
     };
   }

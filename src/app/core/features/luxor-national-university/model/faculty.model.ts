@@ -10,6 +10,8 @@ export interface FacultyAbout {
   mission: string;
   goals: string;
   history: string;
+  details: string;
+  location: FacultyContact;
 }
 
 export interface Faculty {

@@ -7,26 +7,7 @@ import { ContactInfo, Language } from '../../../model/common.model';
   selector: 'app-top-nav',
   standalone: true,
   imports: [CommonModule],
-  template: `
-    <div class="top-header">
-      <div class="container-custom top-header-inner">
-        <div class="top-info">
-          <span>  {{ contactInfo.phone }}<i class="fa-solid fa-phone"></i></span>
-          <span>{{ contactInfo.email }}<i class="fa-solid fa-envelope"></i> </span>
-        </div>
-        <div class="top-lang">
-          <a 
-            *ngFor="let lang of languages" 
-            href="#" 
-            [class.active]="lang.active"
-            (click)="switchLanguage(lang.code)"
-          >
-            {{ lang.name }}
-          </a>
-        </div>
-      </div>
-    </div>
-  `,
+ templateUrl: './top-nav.component.html',
   styleUrl: './top-nav.component.css'
 })
 export class TopNavComponent implements OnInit {

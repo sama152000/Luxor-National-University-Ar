@@ -48,3 +48,15 @@
   margin: 0;
   opacity: 0.8;
 }
+
+   .main-content {
+      opacity: 0;
+    }
+
+    .main-content.fade-in {
+      animation: fadeIn 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }

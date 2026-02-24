@@ -145,6 +145,27 @@
 .content-section li {
   margin-bottom: var(--spacing-xs);
   line-height: 1.6;
+  color: #4a4a4a;
+}
+
+/* General list styles for all lists in the component */
+ul li,
+ol li {
+  color: #4a4a4a;
+}
+
+ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+ul ul {
+  list-style-type: circle;
+}
+
+ol {
+  list-style-type: decimal;
+  padding-left: 20px;
 }
 
 .content-section strong {
@@ -213,13 +234,14 @@
 
 @media (max-width: 480px) {
   .tabs-wrapper {
-    margin: 0 var(--spacing-sm);
+    margin: 0 var(--spacing-xs);
+    padding: 4px;
   }
   
   .tab-item {
-    padding: var(--spacing-sm);
-    font-size: 0.9rem;
-    min-height: 50px;
+    padding: 6px 8px;
+    font-size: 0.8rem;
+    min-height: 36px;
   }
   
   .tab-item span {
@@ -227,7 +249,7 @@
   }
   
   .tab-item i {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
   }
 }
 
