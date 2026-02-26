@@ -8,6 +8,7 @@ import { FacultiesComponent } from "./faculties/faculties.component";
 import { StatsComponent } from "./stats/stats.component";
 import { BookComponent } from "./book/book.component";
 import { HeroComponent } from './hero/hero.component';
+import { GalleryComponent } from "./gallery/gallery.component";
 
 @Component({
   selector: 'app-home',
@@ -20,8 +21,9 @@ import { HeroComponent } from './hero/hero.component';
     EventsComponent,
     FacultiesComponent,
     StatsComponent,
-    BookComponent
-  ],
+    BookComponent,
+    GalleryComponent
+],
   templateUrl: './Home.component.html',
   styleUrl: './Home.component.css'
 })
