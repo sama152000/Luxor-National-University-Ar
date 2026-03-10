@@ -8,6 +8,7 @@ import { StatsComponent } from "./stats/stats.component";
 import { BookComponent } from "./book/book.component";
 import { HeroComponent } from './hero/hero.component';
 import { GalleryComponent } from "./gallery/gallery.component";
+import { DiscoverComponent } from "./discover/discover.component";
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,8 @@ import { GalleryComponent } from "./gallery/gallery.component";
     FacultiesComponent,
     StatsComponent,
     BookComponent,
-    GalleryComponent
+    GalleryComponent,
+    DiscoverComponent
 ],
   templateUrl: './Home.component.html',
   styleUrl: './Home.component.css'
