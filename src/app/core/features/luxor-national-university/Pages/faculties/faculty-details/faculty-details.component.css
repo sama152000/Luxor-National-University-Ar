@@ -1017,3 +1017,16 @@
     transform: scale(1);
   }
 }
+
+/* Dean Name Styling */
+.faculty-dean {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, rgba(56, 131, 147, 0.15), rgba(56, 131, 147, 0.05));
+  border-radius: 8px;
+  border-right: 3px solid var(--primary-color);
+  display: inline-block;
+}

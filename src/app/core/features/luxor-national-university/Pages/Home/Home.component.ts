@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeService } from '../../Services/home.service';
-import { DiscoverComponent } from "./discover/discover.component";
 import { NewsComponent } from "./news/news.component";
 import { EventsComponent } from "./events/events.component";
 import { FacultiesComponent } from "./faculties/faculties.component";
@@ -16,7 +15,6 @@ import { GalleryComponent } from "./gallery/gallery.component";
   imports: [
     CommonModule,
     HeroComponent,
-    DiscoverComponent,
     NewsComponent,
     EventsComponent,
     FacultiesComponent,
