@@ -46,7 +46,7 @@
     transition: transform 1s ease;
     backface-visibility: hidden;
     position: relative;
-    /* color: #2c2c2c; */
+    color: var(--primary-color);
 }
 
 /* darker inner edges */
@@ -72,7 +72,7 @@
 .page-content h3,
 .book-page h3 {
     margin-bottom: 20px;
-    color: #4a2f0f;
+    color: var(--primary-darker);
     /* بني غامق */
     font-weight: 800;
     text-transform: uppercase;
