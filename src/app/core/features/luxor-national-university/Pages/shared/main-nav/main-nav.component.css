@@ -187,7 +187,8 @@
     transform: none;
     left: 0;
     margin-top: 10px;
-    background: #2d3436;
+    background: #eceff0f5;
+    color: var(--primary-darker);
     box-shadow: none;
     padding: 0;
     min-width: auto;
@@ -200,7 +201,7 @@
   }
 
   .dropdown-item {
-    color: var(--white);
+    color: var(--primary-darker);
     padding: 12px 16px;
     font-size: 14px;
     justify-content: flex-start;
