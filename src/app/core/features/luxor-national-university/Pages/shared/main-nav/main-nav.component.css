@@ -180,6 +180,42 @@
   .menu-item span {
     display: none;
   }
+
+  /* Mobile Dropdown Styles */
+  .dropdown-menu {
+    position: static;
+    transform: none;
+    left: 0;
+    margin-top: 10px;
+    background: #2d3436;
+    box-shadow: none;
+    padding: 0;
+    min-width: auto;
+    animation: none;
+    border-radius: 8px;
+  }
+
+  .dropdown-menu::before {
+    display: none;
+  }
+
+  .dropdown-item {
+    color: var(--white);
+    padding: 12px 16px;
+    font-size: 14px;
+    justify-content: flex-start;
+  }
+
+  .dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    padding-left: 20px;
+  }
+
+  .dropdown-item i {
+    color: var(--white);
+    font-size: 14px;
+  }
 }
 
 /* Dropdown Arrow */
