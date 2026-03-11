@@ -214,9 +214,17 @@
   }
 
   .dropdown-item i {
-    color: var(--white);
+    color: var(--primary-darker);
     font-size: 14px;
   }
+    .dropdown-item span {
+    color: var(--primary-darker);
+    font-size: 14px;
+  }
+  .menu-item[_ngcontent-ng-c975949329] span[_ngcontent-ng-c975949329] {
+      color: var(--primary-darker);
+
+}
 }
 
 /* Dropdown Arrow */
