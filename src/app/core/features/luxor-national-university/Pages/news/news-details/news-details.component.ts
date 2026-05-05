@@ -89,6 +89,7 @@ export class NewsDetailsComponent implements OnInit {
       if (this.news) {
         this.loadRelatedNews(this.news.id);
         this.loadNavigationNews(this.news.id);
+        this.updateMetaTags(this.news);
       }
 
       this.isLoading = false;
