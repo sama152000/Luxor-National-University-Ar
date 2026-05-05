@@ -28,6 +28,7 @@ text-align: center;
   overflow: hidden;
   box-shadow: var(--shadow-lg);
   transition: var(--transition-smooth);
+
 }
 
 .news-main img {
@@ -109,6 +110,7 @@ text-align: center;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
   transition: var(--transition-smooth);
+  cursor: pointer;
 }
 
 .news-item:hover {
@@ -121,6 +123,7 @@ text-align: center;
   object-fit: cover;
   border-radius: var(--radius-md);
   flex-shrink: 0;
+  
 }
 
 .news-item div {

@@ -21,12 +21,16 @@
         <div class="category-badge">{{ news.postCategories[0]?.categoryName }}</div>
         <h2 class="news-title">{{ news.title }}</h2>
         
-        <div class="news-meta">
-          <div class="meta-item">
-            <i class="pi pi-calendar"></i>
-            <span>{{ formatDate(news.publishedDate) }}</span>
-          </div>
-        </div>
+         <div class="news-meta">
+           <div class="meta-item">
+             <i class="pi pi-calendar"></i>
+             <span>{{ formatDate(news.publishedDate) }}</span>
+           </div>
+           <div class="meta-item">
+             <i class="pi pi-eye"></i>
+             <span>{{ news.totalViewCount }} مشاهدة</span>
+           </div>
+         </div>
       </div>
 
       <!-- Image Slider -->
@@ -115,10 +119,10 @@
         
         <div class="related-grid">
           <div 
-            *ngFor="let related of relatedNews; let i = index"
-            class="related-card hover-lift"
-            [class]="'animate-delay-' + (i % 4 + 1)"
-            (click)="viewRelatedNews(related?.slug)"
+             *ngFor="let related of relatedNews; let i = index"
+             class="related-card hover-lift"
+             [class]="'animate-delay-' + (i % 4 + 1)"
+             (click)="viewRelatedNews(related?.id)"
           >
             <div class="related-image">
               <img [src]="related.featuredImagePath" [alt]="related.title">

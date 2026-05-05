@@ -59,12 +59,16 @@
 
           <!-- Card Content -->
           <div class="card-content">
-            <div class="card-meta">
-              <span class="date">
-                <i class="pi pi-calendar"></i>
-                {{ news.publishedDate | date:'mediumDate' }}
-              </span>
-            </div>
+             <div class="card-meta">
+               <span class="date">
+                 <i class="pi pi-calendar"></i>
+                 {{ news.publishedDate | date:'mediumDate' }}
+               </span>
+               <span class="views">
+                 <i class="pi pi-eye"></i>
+                 {{ news.totalViewCount }} مشاهدة
+               </span>
+             </div>
 
             <h3 class="card-title">{{ news.title }}</h3>
             
@@ -72,7 +76,7 @@
             <div class="card-description" [innerHTML]="news.content | cleanHtml"></div>
             
             <div class="card-footer">
-        <button class="btn btn-primary" [routerLink]="['/news', news?.slug]">                اقرأ المزيد
+        <button class="btn btn-primary" [routerLink]="['/news', news?.id]">                اقرأ المزيد
                 <i class="pi pi-arrow-left"></i>
               </button>
             </div>

@@ -24,9 +24,8 @@ export const routes: Routes = [
        { path: 'about/mission', component: AboutUniversityComponent},
        { path: 'about/goals', component: AboutUniversityComponent},
        { path: 'about/history', component: AboutUniversityComponent},
-
-       {path: 'news', component: NewsComponent},
-       {path: 'news/:slug', component: NewsDetailsComponent},
+        {path: 'news', component: NewsComponent},
+        {path: 'news/:id', component: NewsDetailsComponent},
        {path: 'faculties', component: FacultiesComponent},
        {path: 'faculties/:slug', component: FacultyDetailsComponent},
        {path: 'services', component: ServicesComponent},

@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ServicesService } from '../../Services/services.service';
@@ -12,7 +11,7 @@ import { CleanHtmlPipe } from '../../../../pipes/clean-html.pipe';
 @Component({
   selector: 'app-services',
   standalone: true,
-  imports: [CommonModule, RouterLink,CleanHtmlPipe],
+  imports: [CommonModule, CleanHtmlPipe],
   templateUrl: './services.component.html',
   styleUrls: ['./services.component.css']
 })
