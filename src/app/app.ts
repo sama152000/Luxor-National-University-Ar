@@ -34,6 +34,10 @@ export class App implements OnInit {
         if (logos?.length > 0) {
           this.meta.updateTag({ property: 'og:image', content: logos[0].url });
           this.meta.updateTag({ name: 'twitter:image', content: logos[0].url });
+          const favicon = document.querySelector("link[rel~='icon']") as HTMLLinkElement;
+          if (favicon) {
+            favicon.href = logos[0].url;
+          }
         }
       },
       error: (err) => console.error('Error fetching logos', err)
