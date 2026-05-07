@@ -58,20 +58,31 @@ export class NewsDetailsComponent implements OnInit {
     this.meta.updateTag({ property: 'og:title', content: news.title });
     this.meta.updateTag({ property: 'og:description', content: description });
     this.meta.updateTag({ property: 'og:image', content: imageUrl });
+    this.meta.updateTag({ property: 'og:image:secure_url', content: imageUrl });
+    this.meta.updateTag({ property: 'og:image:alt', content: news.title });
     this.meta.updateTag({ property: 'og:url', content: `${environment.apiBase}/news/${news.id}` });
     this.meta.updateTag({ property: 'og:type', content: 'article' });
+    this.meta.updateTag({ property: 'og:site_name', content: 'جامعة الاقصر الاهلية' });
 
     // Update Twitter Card meta tags
+    this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
     this.meta.updateTag({ name: 'twitter:title', content: news.title });
     this.meta.updateTag({ name: 'twitter:description', content: description });
     this.meta.updateTag({ name: 'twitter:image', content: imageUrl });
+    this.meta.updateTag({ name: 'twitter:image:src', content: imageUrl });
+    this.meta.updateTag({ name: 'twitter:image:alt', content: news.title });
   }
 
   private getFullImageUrl(url: string): string {
     if (url.startsWith('http')) {
       return url;
     }
-    return `${environment.apiBase}${url}`;
+
+    if (url.startsWith('/')) {
+      return `${environment.apiBase}${url}`;
+    }
+
+    return `${environment.apiBase}/${url}`;
   }
 
   private stripHtmlTags(html: string): string {
@@ -164,7 +175,8 @@ export class NewsDetailsComponent implements OnInit {
   }
 
   getCurrentImage(): string {
-    return this.news?.postAttachments[this.currentImageIndex]?.url || this.news?.featuredImagePath || '';
+    const imageUrl = this.news?.postAttachments[this.currentImageIndex]?.url || this.news?.featuredImagePath || '';
+    return imageUrl ? this.getFullImageUrl(imageUrl) : '';
   }
 
   hasMultipleImages(): boolean {

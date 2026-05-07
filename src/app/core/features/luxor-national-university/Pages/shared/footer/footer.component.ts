@@ -8,7 +8,7 @@ import { VisitorsService } from '../../../Services/visitors.service';
 import { FooterData } from '../../../model/footer.model';
 import { ImageAsset } from '../../../model/common.model';
 import { Logo } from '../../../model/logo.model';
-import { VisitorsTotal } from '../../../model/visitors.model';
+import { VisitorsTotal, VisitorsToday, VisitorsMonth } from '../../../model/visitors.model';
 
 @Component({
   selector: 'app-footer',
@@ -29,6 +29,9 @@ export class FooterComponent implements OnInit, OnDestroy {
   displayedViews = 0;
   animationDone = false;
 
+  todayViews = 0;
+  monthViews = 0;
+
   private subscription = new Subscription();
   private animationFrameId?: number;
 
@@ -43,6 +46,8 @@ export class FooterComponent implements OnInit, OnDestroy {
     this.loadFooterData();
     this.loadLogo();
     this.loadTotalViews();
+    this.loadTodayViews();
+    this.loadMonthViews();
   }
 
   ngOnDestroy(): void {
@@ -121,6 +126,30 @@ export class FooterComponent implements OnInit, OnDestroy {
       error: () => {
         this.totalViews = 0;
         this.displayedViews = 0;
+      }
+    });
+    this.subscription.add(sub);
+  }
+
+  private loadTodayViews(): void {
+    const sub = this.visitorsService.getTodayViews().subscribe({
+      next: (data: VisitorsToday) => {
+        this.todayViews = data?.todayViews ?? 0;
+      },
+      error: () => {
+        this.todayViews = 0;
+      }
+    });
+    this.subscription.add(sub);
+  }
+
+  private loadMonthViews(): void {
+    const sub = this.visitorsService.getMonthViews().subscribe({
+      next: (data: VisitorsMonth) => {
+        this.monthViews = data?.monthViews ?? 0;
+      },
+      error: () => {
+        this.monthViews = 0;
       }
     });
     this.subscription.add(sub);
