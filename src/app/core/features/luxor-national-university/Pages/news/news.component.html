@@ -27,6 +27,29 @@
       </div>
     </div>
 
+    <!-- Search Bar -->
+    <div class="search-bar-container slide-up animate-delay-2">
+      <div class="search-input-wrapper">
+        <i class="pi pi-search search-icon"></i>
+        <input
+          type="text"
+          class="search-input"
+          placeholder="ابحث بعنوان الخبر..."
+          [ngModel]="searchTitle"
+          (ngModelChange)="onSearchChange($event)"
+          dir="rtl"
+          aria-label="البحث بعنوان الخبر"
+        />
+        <button
+          *ngIf="searchTitle"
+          class="search-clear-btn"
+          (click)="onSearchChange('')"
+          aria-label="مسح البحث">
+          <i class="pi pi-times"></i>
+        </button>
+      </div>
+    </div>
+
     <!-- News Grid -->
     <div class="news-grid-container slide-up animate-delay-2">
       <!-- Loading State -->
@@ -67,8 +90,8 @@
             <div class="card-description" [innerHTML]="news.content | cleanHtml"></div>
             
             <div class="card-footer">
-              <button class="btn btn-primary" [routerLink]="['/news', news?.id]">
-                اقرأ المزيد
+              <button class="read-more-btn" (click)="openNews(news)" type="button">
+                <span>اقرأ المزيد</span>
                 <i class="pi pi-arrow-left"></i>
               </button>
             </div>

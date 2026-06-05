@@ -30,18 +30,19 @@ export class FooterService {
     if (contact?.facebook) {
       socialLinks.push({ platform: 'فيسبوك', url: contact.facebook, icon: 'fab fa-facebook-f' });
     }
-    if (contact?.whatsApp) {
-      socialLinks.push({ platform: 'واتساب', url: contact.whatsApp, icon: 'fab fa-whatsapp' });
-    }
+    // if (contact?.whatsApp) {
+    //   const waNumber = contact.whatsApp.replace(/\D/g, '');
+    //   socialLinks.push({ platform: 'واتساب', url: `https://wa.me/${waNumber}`, icon: 'fab fa-whatsapp' });
+    // }
 
     return {
       id: '1',
       logo: {
         src: './assets/lnu.logo.png',
-        alt: 'جامعة الأقصر الوطنية',
+        alt: 'جامعة الأقصر الأهلية',
         title: 'شعار الجامعة'
       },
-      description: contact?.address || 'جامعة الأقصر الوطنية - تقدم تعليماً عالياً متميزاً في الأقصر',
+      description: 'جامعة الأقصر الأهلية - تقدم تعليماً عالياً متميزاً في الأقصر',
       sections: [
         {
           title: 'روابط هامة',
@@ -54,7 +55,7 @@ export class FooterService {
         }
       ],
       socialLinks: socialLinks,
-      copyright: 'جامعة الأقصر الوطنية. جميع الحقوق محفوظة.',
+      copyright: 'جامعة الأقصر الأهلية. جميع الحقوق محفوظة.',
       year: new Date().getFullYear()
     };
   }

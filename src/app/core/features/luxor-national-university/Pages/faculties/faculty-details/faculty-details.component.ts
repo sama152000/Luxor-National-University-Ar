@@ -32,6 +32,7 @@ export class FacultyDetailsComponent implements OnInit {
 
   // Programs
   programs: DepartmentProgram[] = [];
+  private programImagesMap: Map<string, string> = new Map();
   currentProgramsPage = 1;
   programsPerPage = 6;
   totalProgramsPages = 1;
@@ -105,6 +106,17 @@ export class FacultyDetailsComponent implements OnInit {
         this.FacultyService.getDepartmentPrograms().subscribe(programs => {
           this.programs = programs.filter(p => p.departmentId === dep.id);
           this.updateProgramsPagination();
+
+          // preload program images
+          this.programs.forEach(prog => {
+            if (prog.programId) {
+              this.ProgramService.getProgramById(prog.programId).subscribe(fullProg => {
+                if (fullProg?.programAttachments?.length) {
+                  this.programImagesMap.set(prog.programId, fullProg.programAttachments[0].url);
+                }
+              });
+            }
+          });
         });
 
         // أعضاء القسم
@@ -300,6 +312,11 @@ export class FacultyDetailsComponent implements OnInit {
   // Navigation
   goBack(): void {
     this.router.navigate(['/faculties']);
+  }
+
+  /** Get program image URL by program ID */
+  getProgramImage(programId: string): string {
+    return this.programImagesMap.get(programId) || '';
   }
 
   /** Get member image URL by member ID */

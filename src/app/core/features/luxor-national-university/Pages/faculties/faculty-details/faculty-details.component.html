@@ -78,6 +78,17 @@
                class="program-card hover-lift"
                [class]="'animate-delay-' + (i % 4 + 1)"
                (click)="openProgramModal(program)">
+            <div class="program-image">
+              <img
+                *ngIf="getProgramImage(program.programId)"
+                [src]="getProgramImage(program.programId)"
+                [alt]="program.programName || program.name"
+                class="program-img"
+              >
+              <div class="program-avatar" *ngIf="!getProgramImage(program.programId)">
+                <i class="pi pi-book"></i>
+              </div>
+            </div>
             <div class="program-header">
               <div class="degree-badge">{{ program.programName || program.name }}</div>
             </div>
