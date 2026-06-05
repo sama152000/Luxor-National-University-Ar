@@ -183,7 +183,7 @@ p{
 /* Responsive */
 @media (max-width: 768px) {
   .hero-slider {
-    height: 65vh;
+    height: 68vh;
     min-height: 380px;
   }
 
